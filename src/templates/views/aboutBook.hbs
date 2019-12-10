@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="../css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="../css/style.css" type="text/css">
+  
+  <title>Library</title>
+</head>
+<script>
+const host="http://192.168.137.1:3000/"
+  function xhttpRequest(type,request,url,callback){
+    const xhttp=new XMLHttpRequest();
+    xhttp.open(type,host+url,true)
+    xhttp.setRequestHeader("Content-type","application/json")
+    xhttp.send(JSON.stringify(request));
+    
+    
+        xhttp.onreadystatechange=(e)=>{
+            
+            if (xhttp.readyState == 4 && xhttp.status == 200){
+            callback(JSON.parse(xhttp.responseText));
+        }
+
+}}
+function xhttpRequest1(type,request,url,callback){
+    const xhttp=new XMLHttpRequest();
+    xhttp.open(type,host+url,true)
+    xhttp.setRequestHeader("Content-type","application/json")
+    xhttp.send(JSON.stringify(request));
+    
+    
+        xhttp.onreadystatechange=(e)=>{
+            
+            if (xhttp.readyState == 4 && xhttp.status == 200){
+            callback((xhttp.responseText));
+        }
+
+}}
+const bookid="{{lbId}}"
+
+function getBookDetail(){
+    xhttpRequest('GET',{},'getBookDetails/'+bookid,(res)=>{
+    
+      document.getElementById('booktitle').innerText=res.book.title
+      document.getElementById('bookdescription').innerText=res.book.description
+      document.getElementById('bookImage').src=host+"bookImage/"+res.lb.title.replace(/ /g,"_")+"/"+res.lb.author.replace(/ /g,"_")
+      lendBy=res.lb.lendBy;
+      title=res.book.title
+    })
+}
+function requestBorrow(){
+  console.log(title)
+  console.log(lendBy)
+  xhttpRequest1('POST',{token:sessionStorage.getItem('Library-Token'),title,lendBy},'reqBorrow',(res)=>{
+    if(res=="Already Borrowed"){
+      alert('Book is already borrowed')
+    }
+    else{
+      alert("Borrow request sent succesfully")
+    }
+  })
+
+}
+window.onload=getBookDetail()
+</script>
+<body id="home" style="margin-top: 105px;">
+
+  <!-- Navigation -->
+
+  <nav class="navbar navbar-expand-md navbar-light fixed-top py-4" id="main-nav">
+    <div class="container">
+      <a href="#home" class="navbar-brand">
+        <img src="img/mlogo.png" width="50" height="50" alt="">
+        <h3 class="d-inline align-middle">logoHere</h3>
+      </a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+            
+          <li class="nav-item">
+            <a href="#home" class="nav-link">nav</a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">nav1</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">nav2</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">nav3</a>
+          </li>
+
+          <li class="nav-item">
+              <form id="tfnewsearch" method="get" action="">
+                <input type="text" size="15" height="5" maxlength="100">
+                <input type="submit" class="btn btn-outline-primary" value="Search" >
+            </form>
+            </li>
+        </ul>
+      </div><!--end of collapse-->
+    </div><!--end of container-->
+  </nav>
+
+
+  
+<!--Add this part-->
+
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+          
+          <div class="col-md-12">
+            <h2 class="text-primary " id="booktitle">
+              
+            </h2>
+            <h3 id="bookauthor"></h3>
+    
+          </div>
+        </div><!--end of col-->
+      </div><!--end of row -->
+  <div class="row">
+      <div class="col-md-6">
+              <img  id="bookImage" alt="" class="img-fluid img-responsive w-50 mb-3">
+        </div><!--end of cols-->
+        <div class="col-md-6" id="bookdescription">
+          
+        </div>
+        
+        <button onclick="requestBorrow()" class="btn btn-outline-primary"> Request Borrow</button>
+        <br>
+  </div>
+</div>
+ 
+
+
+  
+  <!-- Footer -->
+  <footer id="main-footer" class="py-5 bg-primary text-white">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <p class="lead">
+              Copyright &copy;2019</p>
+          </div><!-- end of col-md-12-->
+        </div><!-- end of row-->
+      </div><!-- end of container-->
+    </footer>
+  
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+  
+</body>
+
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Library</title>
+</head>
+<script src="js/home.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/addlendingbook.js"></script>
+<body id="home" style="margin-top: 105px;">
+
+  <!-- Navigation -->
+
+  <nav class="navbar navbar-expand-md navbar-light fixed-top py-4" id="main-nav">
+    <div class="container">
+      <a href="#home" class="navbar-brand">
+        <img src="img/mlogo.png" width="50" height="50" alt="">
+      </a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav">
+            
+          <li class="nav-item">
+            <li class="nav-item">
+                <a href="/home" class="nav-link">Home</a>
+
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#addPostModal">
+                  <i class="fas fa-plus"></i> Add Books
+                </a>          </li>
+          
+          <li class="nav-item">
+            <a href="/lendingHistory" class="nav-link" >Lending History</a>
+          </li>
+          <li class="nav-item">
+            <a href="/Orphandonate" class="nav-link" >Donate</a>
+          </li>
+          <li class="nav-item">
+            <a href="/borrowingHistory" class="nav-link">Borrowing History</a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/seeNotifications" class="nav-link">Notifications</a>
+          </li>
+          
+        </ul>
+        <ul class="navbar-nav ml-auto">
+
+        
+            
+            <li class="nav-item">
+              <a href="/login" class="nav-link">Logout</a>
+            </li>
+        </ul>
+      </div><!--end of collapse-->
+    </div><!--end of container-->
+  </nav>
+  
+ <!--Popup-->
+ <div class="modal fade" id="addPostModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Add Book for lending</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="title" >Title</label>
+              <input type="text" id="fbtitle"class="form-control">
+            </div>
+            <div class="form-group" >
+              <label for="author">Author</label>
+              <input type="text" id="fbauthor" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="title">Genre</label>
+              <input type="text" id="fbgenre" class="form-control">
+            </div>
+            
+
+            {{!-- <div class="form-group">
+              <label for="category">Choose Category</label>
+              <select class="form-control">
+                <option value="">Educational</option>
+                <option value="">Fiction</option>
+                <option value="">Non-fiction</option>
+
+              </select>
+            </div> --}}
+            {{!-- <div class="form-group">
+              <label for="image">Upload Image</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image">
+                <label for="image" class="custom-file-label">Choose File</label>
+              </div>
+              
+            </div> --}}
+            <div class="form-group">
+              <label for="body" >About The Book</label>
+              <textarea name="editor1" class="form-control" id="fbdescription"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-dismiss="modal" onclick="addlendingbook()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--Header Here-->
+  <div class="row text-center">
+      <div class="col">
+        
+        <div class="info-header mb-5">
+          <h1 class="text-primary pb-3">
+            Search  the books you need
+          </h1>
+
+        </div><!--end of info-header -->
+      </div><!--end of col-->
+    </div><!--end of row -->
+  
+ <!--search button-->
+
+  <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <form id="tfnewsearch" method="get" action="">
+            <input type="text" size="20" height="5" maxlength="100">
+            <input type="submit" class="btn btn-outline-primary" value="Search" >
+        </form>
+    </div>
+  </div>
+</div>
+  
+  <!-- Books -->
+  <section id="books" class="my-5 text-center">
+    <div class="container">
+      
+      <div class="row">
+<div class="col-lg-3 col-md-4 col-xm-6" id="book1" style="visibility:collapse">
+               <a id="book1link"> <div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book1img">
+                    <h3 id="book1title"></h3>
+                    <h5 class="text-muted" id="book1rating"></h5>
+                    <p id="book1text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book2" style="visibility:collapse">
+                <a id="book2link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book2img">
+                    <h3 id="book2title"></h3>
+                    <h5 class="text-muted" id="book2rating"></h5>
+                    <p id="book2text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div><!--end of card--><a>
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book3" style="visibility:collapse">
+                <a id="book3link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book3img">
+                    <h3 id="book3title"></h3>
+                    <h5 class="text-muted" id="book3rating"></h5>
+                    <p id="book3text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book4" style="visibility:collapse">
+                <a id="book4link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book4img">
+                    <h3 id="book4title"></h3>
+                    <h5 class="text-muted" id="book4rating"></h5>
+                    <p id="book4text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book5" style="visibility:collapse">
+                <a id="book5link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book5img">
+                    <h3 id="book5title"></h3>
+                    <h5 class="text-muted" id="book5rating"></h5>
+                    <p id="book5text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book6" style="visibility:collapse">
+                <a id="book6link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book6img">
+                    <h3 id="book6title"></h3>
+                    <h5 class="text-muted" id="book6rating"></h5>
+                    <p id="book6text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book7" style="visibility:collapse">
+                <a id="book7link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book7img">
+                    <h3 id="book7title"></h3>
+                    <h5 class="text-muted" id="book7rating"></h5>
+                    <p id="book7text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book8" style="visibility:collapse">
+                <a id="book8link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book8img">
+                    <h3 id="book8title"></h3>
+                    <h5 class="text-muted" id="book8rating"></h5>
+                    <p id="book8text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book9" style="visibility:collapse">
+                <a id="book9link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book9img">
+                    <h3 id="book9title"></h3>
+                    <h5 class="text-muted" id="book9rating"></h5>
+                    <p id="book9text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book10" style="visibility:collapse">
+                <a id="book10link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book10img">
+                    <h3 id="book10title"></h3>
+                    <h5 class="text-muted" id="book10rating"></h5>
+                    <p id="book10text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book11" style="visibility:collapse">
+                <a id="book11link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book11img">
+                    <h3 id="book11title"></h3>
+                    <h5 class="text-muted" id="book11rating"></h5>
+                    <p id="book11text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book12" style="visibility:collapse">
+                <a id="book12link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book12img">
+                    <h3 id="book12title"></h3>
+                    <h5 class="text-muted" id="book12rating"></h5>
+                    <p id="book12text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book13" style="visibility:collapse">
+                <a id="book13link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book13img">
+                    <h3 id="book13title"></h3>
+                    <h5 class="text-muted" id="book13rating"></h5>
+                    <p id="book13text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book14" style="visibility:collapse">
+                <a id="book14link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book14img">
+                    <h3 id="book14title"></h3>
+                    <h5 class="text-muted" id="book14rating"></h5>
+                    <p id="book14text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book15" style="visibility:collapse">
+                <a id="book15link"><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book15img">
+                    <h3 id="book15title"></h3>
+                    <h5 class="text-muted" id="book15rating"></h5>
+                    <p id="book15text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+              <div class="col-lg-3 col-md-4 col-xm-6" id="book16" style="visibility:collapse">
+                <a id="book16link"></a><div class="card">
+                  <div class="card-body">
+                    <img  alt="" class="img-fluid w-50 mb-3" id="book16img">
+                    <h3 id="book16title"></h3>
+                    <h5 class="text-muted" id="book16rating"></h5>
+                    <p id="book16text"></p>
+                    
+                  </div><!--end of card-body -->
+                </div></a><!--end of card-->
+              </div><!--end of cols-->
+      </div><!--end of row --><!--for more books create another div row-->
+
+      
+    </div><!--end of container-->
+  </section>
+
+  <!-- Footer -->
+  <footer id="main-footer" class="py-5 bg-primary text-white">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <p class="lead">
+              Copyright &copy;2019</p>
+          </div><!-- end of col-md-12-->
+        </div><!-- end of row-->
+      </div><!-- end of container-->
+    </footer>
+  
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+  
+</body>
+
+</html>

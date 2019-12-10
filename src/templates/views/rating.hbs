@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Library</title>
+</head>
+<script src="js/submitReview.js"></script>
+<body id="home" style="margin-top: 105px;">
+
+ <!-- Navigation -->
+
+ <nav class="navbar navbar-expand-md navbar-light fixed-top py-4" id="main-nav">
+  <div class="container">
+    <a href="#home" class="navbar-brand">
+      <img src="img/mlogo.png" width="50" height="50" alt="">
+    </a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav">
+          
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#addPostModal">
+                <i class="fas fa-plus"></i> Add Books
+              </a>          </li>
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link">Lend Books</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Add</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Borrow Books</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+
+      
+          <li class="nav-item">
+              <a href="#" class="nav-link">Hello Uzwal</a>
+
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Logout</a>
+          </li>
+      </ul>
+    </div><!--end of collapse-->
+  </div><!--end of container-->
+</nav>
+
+<!--Popup-->
+<div class="modal fade" id="addPostModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Add Post</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="category">Choose Category</label>
+            <select class="form-control">
+              <option value="">Category1</option>
+              <option value="">Category2</option>
+              <option value="">Category3</option>
+              <option value="">Category4</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="image">Upload Image</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="image">
+              <label for="image" class="custom-file-label">Choose File</label>
+            </div>
+            
+          </div>
+          <div class="form-group">
+            <label for="body">About The Book</label>
+            <textarea name="editor1" class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    
+      <div class="info-header mb-5">
+          <h1 class="text-primary pb-3">
+            Give Feedbacks
+          </h1>
+
+        </div><!--end of info-header -->
+    <div class="col-md-12">
+      
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="bookTitle" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="body">Lend By</label>
+          <textarea name="editor1" id="bookLendBy" class="form-control"></textarea>
+        </div>
+      
+      <div class="form-group">
+        <label for="body">Rating</label>
+        <input name="text" id="bookRating" class="form-control"></textarea>
+      </div>
+      <button onclick="submitReview()">
+        Submit
+      </button>
+    </form>
+  </div>
+  </div>
+</div> 
+  
+  <!-- Footer -->
+  <footer id="main-footer" class="py-5 bg-primary text-white">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <p class="lead">
+              Copyright &copy;2019</p>
+          </div><!-- end of col-md-12-->
+        </div><!-- end of row-->
+      </div><!-- end of container-->
+    </footer>
+  
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+  
+</body>
+
+</html>

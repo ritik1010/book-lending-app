@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Library</title>
+</head>
+<script src="js/notification.js"></script>
+<script src="js/logout.js"></script>
+<body id="home" style="margin-top: 105px;">
+
+  <!-- Navigation -->
+
+ <nav class="navbar navbar-expand-md navbar-light fixed-top py-4" id="main-nav">
+    <div class="container">
+      <a href="#home" class="navbar-brand">
+        <img src="img/mlogo.png" width="50" height="50" alt="">
+      </a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav">
+            
+          <li class="nav-item">
+            <li class="nav-item">
+                <a href="/home" class="nav-link">Home</a>
+
+            </li>
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#addPostModal">
+                  <i class="fas fa-plus"></i> Add Books
+                </a>          </li>
+          
+          <li class="nav-item">
+            <a href="/lendingHistory" class="nav-link" >Lending History</a>
+          </li>
+          <li class="nav-item">
+            <a href="/borrowingHistory" class="nav-link">Borrowing History</a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/seeNotifications" class="nav-link">Notifications</a>
+          </li>
+          
+        </ul>
+        <ul class="navbar-nav ml-auto">
+
+        
+            
+            <li class="nav-item">
+              <a href="#" class="nav-link">Logout</a>
+            </li>
+        </ul>
+      </div><!--end of collapse-->
+    </div><!--end of container-->
+  </nav> 
+ <!--Popup-->
+ <div class="modal fade" id="addPostModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Add Post</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="category">Choose Category</label>
+              <select class="form-control">
+                <option value="">Category1</option>
+                <option value="">Category2</option>
+                <option value="">Category3</option>
+                <option value="">Category4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="image">Upload Image</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image">
+                <label for="image" class="custom-file-label">Choose File</label>
+              </div>
+              
+            </div>
+            <div class="form-group">
+              <label for="body">About The Book</label>
+              <textarea name="editor1" class="form-control"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--Header Here-->
+  <!--end of container-->
+  <div>
+      <div id="notification1" style="visibility: collapse;">
+          <div id="notification1body"></div>
+          <button id="notification1ok">OK </button><button id="notification1can">Cancel</button>
+      </div>
+      <div id="notification2" style="visibility: collapse;">
+          <div id="notification2body"></div>
+          <button id="notification2ok">OK </button><button id="notification2can">Cancel</button>
+      </div>
+      <div id="notification3" style="visibility: collapse;">
+          <div id="notification3body"></div>
+          <button id="notification3ok">OK </button><button id="notification3can">Cancel</button>
+      </div>
+      <div id="notification4" style="visibility: collapse;">
+          <div id="notification4body"></div>
+          <button id="notification4ok">OK </button><button id="notification4can">Cancel</button>
+      </div>
+      <div id="notification5" style="visibility: collapse;">
+          <div id="notification5body"></div>
+          <button id="notification5ok">OK </button><button id="notification5can">Cancel</button>
+      </div>
+      <div id="notification6" style="visibility: collapse;">
+          <div id="notification6body"></div>
+          <button id="notification6ok">OK </button><button id="notification6can">Cancel</button>
+      </div>
+      <div id="notification7" style="visibility: collapse;">
+          <div id="notification7body"></div>
+          <button id="notification7ok">OK </button><button id="notification7can"> Cancel</button>
+      </div>
+      <div id="notification8" style="visibility: collapse;">
+          <div id="notification8body"></div>
+          <button id="notification8ok">OK </button><button id="notification8can">Cancel</button>
+      </div>
+      <div id="notification9" style="visibility: collapse;">
+          <div id="notification9body"></div>
+          <button id="notification9ok">OK </button><button id="notification9can">Cancel</button>
+      </div><div id="notification10" style="visibility: collapse;">
+          <div id="notification10body"></div>
+          <button id="notification10ok">OK </button><button id="notification10can">Cancel</button>
+      </div><div id="notification11" style="visibility: collapse;">
+          <div id="notification11body"></div>
+          <button id="notification11ok">OK </button><button id="notification11can">Cancel</button>
+      </div><div id="notification12" style="visibility: collapse;">
+          <div id="notification12body"></div>
+          <button id="notification12ok">OK </button><button id="notification12can">Cancel</button>
+      </div>
+      
+</div>
+      
+
+  
+
+  <!-- Footer -->
+  <footer id="main-footer" class="py-5 bg-primary text-white">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <p class="lead">
+              Copyright &copy;2019</p>
+          </div><!-- end of col-md-12-->
+        </div><!-- end of row-->
+      </div><!-- end of container-->
+    </footer>
+  
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+  
+</body>
+
+</html>
